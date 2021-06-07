@@ -1,0 +1,7 @@
+version: "3.7"
+services:
+       nginx:
+           build: ./nginx/
+           image: mon_nginx
+           ports:
+               - "443:443"
