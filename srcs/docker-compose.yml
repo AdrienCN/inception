@@ -12,5 +12,7 @@ services:
     wordpress:
         build: ./wordpress/
         image: mon_wp
+        ports:
+            - "8001:9000"
         volumes:
             - ./volume_1:/usr/inception/wordpress

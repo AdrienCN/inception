@@ -3,6 +3,8 @@ FROM debian:buster
 RUN apt-get update && apt-get install -y \
 	nginx \
 	dumb-init \
+	php \
+	php7.3-fpm\
 	openssl
 
 COPY ./nginx.conf /etc/nginx/nginx.conf
@@ -19,6 +21,8 @@ RUN openssl req -newkey rsa:4096 -x509 -sha256 \
 EXPOSE 443
 
 #RUN mkdir -p /usr/inception/wordpress
+
+RUN service php7.3-fpm start
 
 ENTRYPOINT ["/usr/bin/dumb-init"]
 

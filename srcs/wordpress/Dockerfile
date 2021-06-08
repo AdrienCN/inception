@@ -19,6 +19,8 @@ RUN	rm /latest.tar.gz
 
 ADD ./wp-config.php ./usr/inception/wordpress
 
+EXPOSE 9000
+
 RUN service php7.3-fpm start
 
-CMD bash
+CMD sleep infinity 
