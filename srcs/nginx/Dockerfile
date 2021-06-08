@@ -3,8 +3,8 @@ FROM debian:buster
 RUN apt-get update && apt-get install -y \
 	nginx \
 	dumb-init \
-	php \
-	php7.3-fpm\
+	php-fpm \
+	php-mysql \
 	openssl
 
 COPY ./nginx.conf /etc/nginx/nginx.conf
@@ -22,9 +22,11 @@ EXPOSE 443
 
 #RUN mkdir -p /usr/inception/wordpress
 
-RUN service php7.3-fpm start
 
-ENTRYPOINT ["/usr/bin/dumb-init"]
+#ENTRYPOINT ["/usr/bin/dumb-init"]
 
-CMD ["nginx", "-g", "daemon off;"]
-#CMD bash
+#CMD ["nginx", "-g", "daemon off;"]
+
+CMD service php7.3-fpm start && nginx -g "daemon off;"
+
+#CMD service php7.3-fpm start &&  service nginx start && bash
