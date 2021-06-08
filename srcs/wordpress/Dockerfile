@@ -7,14 +7,18 @@ RUN apt-get install -y \
 	php \
 	php-fpm
 
-RUN wget wget https://wordpress.org/latest.tar.gz
+RUN wget https://wordpress.org/latest.tar.gz
 
-RUN mkdir /var/www/inception/wordpress
+RUN mkdir -p /usr/inception/wordpress
 
 RUN	tar -xzf  latest.tar.gz \
 	--strip-component 1 \
-	-C /var/www/inception/wordpress 
+	-C /usr/inception/wordpress
 
 RUN	rm /latest.tar.gz
 
-#RUN mv ./wp-config.php /var/www/inception/wordpress
+ADD ./wp-config.php ./usr/inception/wordpress
+
+RUN service php7.3-fpm start
+
+CMD bash

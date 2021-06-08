@@ -1,7 +1,16 @@
 version: "3.7"
+
 services:
-       nginx:
-           build: ./nginx/
-           image: mon_nginx
-           ports:
-               - "443:443"
+    nginx:
+        build: ./nginx/
+        image: mon_nginx
+        ports:
+            - "443:443"
+        volumes:
+            - ./volume_1:/usr/inception/wordpress
+
+    wordpress:
+        build: ./wordpress/
+        image: mon_wp
+        volumes:
+            - ./volume_1:/usr/inception/wordpress

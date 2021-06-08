@@ -2,16 +2,17 @@ server {
 	listen 443 ssl;
 	listen [::]:443 ssl;
 
-	server_name ft_server;
+	server_name adconsta.42.fr;
 
-	ssl_certificate /etc/nginx/ssl/ft_server.pem;
-	ssl_certificate_key /etc/nginx/ssl/ft_server.key;
+	ssl_certificate /etc/nginx/ssl/inception.pem;
+	ssl_certificate_key /etc/nginx/ssl/inception.key;
 	ssl_protocols TLSv1.2 TLSv1.3;
 
-    root /var/www/ft_server;
-    index index.php index.html index.htm index.nginx-debian.html;
+    root /usr/inception/wordpress;
+	#root /var/www/html;
+    index index.php index.html index.nginx-debian.html index.htm ;
 
-    server_name ft_server;
+    server_name adconsta;
 
     location / {
 		autoindex on;
