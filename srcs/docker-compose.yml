@@ -8,7 +8,7 @@ services:
         ports:
             - "443:443"
         volumes:
-            - ./volume_1:{WP_VOL}
+            - ./volume_1:${WP_VOL}
         networks:
             - inception
 
@@ -23,9 +23,9 @@ services:
 
     mariadb:
         build: ./mariadb
-        image: mon_mariadb
+        image: mon_mdb
         volumes:
-            - ./mariadb_vol:${DB_VOL}
+            - ./mdb_vol:${DB_VOL}
         #env_file: .env
 
 networks:
