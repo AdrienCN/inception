@@ -4,15 +4,32 @@ services:
     nginx:
         build: ./nginx/
         image: mon_nginx
+        #env_file: .env
         ports:
             - "443:443"
         volumes:
-            - ./volume_1:/usr/inception/wordpress
+            - ./volume_1:{WP_VOL}
+        networks:
+            - inception
 
     wordpress:
         build: ./wordpress/
         image: mon_wp
-        ports:
-            - "8001:9000"
+        #env_file: .env
         volumes:
-            - ./volume_1:/usr/inception/wordpress
+            - ./wp_vol:${WP_VOL}
+        networks:
+            - inception
+
+    mariadb:
+        build: ./mariadb
+        image: mon_mariadb
+        volumes:
+            - ./mariadb_vol:${DB_VOL}
+        #env_file: .env
+
+networks:
+    inception:
+        driver: bridge
+
+

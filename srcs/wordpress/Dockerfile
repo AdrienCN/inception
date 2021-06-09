@@ -9,18 +9,17 @@ RUN apt-get install -y \
 
 RUN wget https://wordpress.org/latest.tar.gz
 
-RUN mkdir -p /usr/inception/wordpress
+# RUN mkdir -p /usr/inception/wordpress
+RUN mkdir /usr/tmp_wp
 
 RUN	tar -xzf  latest.tar.gz \
 	--strip-component 1 \
-	-C /usr/inception/wordpress
+	-C /usr/tmp_wp
 
 RUN	rm /latest.tar.gz
 
-ADD ./wp-config.php ./usr/inception/wordpress
+ADD ./wp-config.php ./usr/tmp_wp
 
 EXPOSE 9000
 
-RUN service php7.3-fpm start
-
-CMD sleep infinity 
+CMD cp -r /usr/tmp_wp/* /usr/inception/wordpress && service php7.3-fpm start -F && bash
