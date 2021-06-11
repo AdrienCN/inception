@@ -45,5 +45,5 @@ EXPOSE 9000
 
 ENTRYPOINT ["/usr/bin/dumb-init"]
 
-#CMD ["sh", "/usr/tmp_wp/init_wp"] 
-CMD bash
+CMD ["sh", "/usr/tmp_wp/init_wp"] 
+#CMD bash
