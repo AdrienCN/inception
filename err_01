@@ -1,2 +1,0 @@
-ERROR: Service ‘nginx’ failed to build: failed to register layer: sync /var/lib/docker/image/overlay2/layerdb/tmp/write-set-022453010/diff: input/output error
-
