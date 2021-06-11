@@ -1,0 +1,10 @@
+#!bin/bash
+
+mkdir -p /var/www/wordpress
+mv /usr/tmp_wp/*  /var/www/wordpress/
+
+sed -i 's/WP_DB_NAME/$WP_DB_NAME/' /var/www/wordpress/wp-config.php
+sed -i 's/WP_DB_USER/$WP_DB_USER/' /var/www/wordpress/wp-config.php
+sed -i 's/WP_DB_PASSWORD/$WP_DB_PASSWORD/' /var/www/wordpress/wp-config.php
+#sed -i '
+bash
