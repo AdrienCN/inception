@@ -6,7 +6,26 @@ RUN apt-get install -y \
 	wget \
 	dumb-init \
 	php \
-	php-fpm
+	php7.3-fpm \
+	php7.3-common \
+	php7.3-zip \
+	php7.3-curl \ 
+	php7.3-xml \
+	php7.3-xmlrpc \
+	php7.3-json \
+	php7.3-mysql \
+	php7.3-pdo \
+	php7.3-gd \
+	php7.3-imagick \
+	php7.3-ldap \
+	php7.3-imap \
+	php7.3-mbstring \
+	php7.3-intl \
+	php7.3-cli \
+	php7.3-recode \
+	php7.3-tidy \
+	php7.3-bcmath \
+	php7.3-opcache
 
 RUN wget https://wordpress.org/latest.tar.gz
 
@@ -26,5 +45,5 @@ EXPOSE 9000
 
 ENTRYPOINT ["/usr/bin/dumb-init"]
 
-CMD ["sh", "/usr/tmp_wp/init_wp"] 
-#CMD bash
+#CMD ["sh", "/usr/tmp_wp/init_wp"] 
+CMD bash
