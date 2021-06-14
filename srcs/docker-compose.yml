@@ -8,7 +8,7 @@ services:
         ports:
             - "443:443"
         volumes:
-            - ./wp_vol:/var/www/
+            - wp_vol:/var/www/
         networks:
             - inception
 
@@ -17,7 +17,7 @@ services:
         image: mon_wp
         env_file: .env
         volumes:
-            - ./wp_vol:/var/www/
+            - wp_vol:/var/www/
         networks:
             - inception
 
@@ -25,7 +25,21 @@ services:
         build: ./mariadb
         image: mon_mdb
         volumes:
-            - ./mdb_vol:/var/lib/mysql/
+            - mdb_vol:/var/lib/mysql/
+volumes:
+    wp_vol:
+        driver: local
+        driver_opts:
+            type: 'none'
+            o: 'bind'
+            device: '/home/calao/data/wp_vol'
+
+    mdb_vol:
+        driver: local
+        driver_opts:
+            type: 'none'
+            o: 'bind'
+            device: '/home/calao/data/mdb_vol'
 
 networks:
     inception:
