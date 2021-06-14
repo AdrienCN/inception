@@ -4,7 +4,7 @@ services:
     nginx:
         build: ./nginx/
         image: mon_nginx
-        #env_file: .env
+        env_file: .env
         ports:
             - "443:443"
         volumes:
@@ -15,7 +15,7 @@ services:
     wordpress:
         build: ./wordpress/
         image: mon_wp
-        #env_file: .env
+        env_file: .env
         volumes:
             - ./wp_vol:/var/www/
         networks:
@@ -26,7 +26,6 @@ services:
         image: mon_mdb
         volumes:
             - ./mdb_vol:/var/lib/mysql/
-        #env_file: .env
 
 networks:
     inception:

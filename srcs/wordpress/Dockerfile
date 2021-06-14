@@ -27,18 +27,21 @@ RUN apt-get install -y \
 	php7.3-bcmath \
 	php7.3-opcache
 
-RUN wget https://wordpress.org/latest.tar.gz
+RUN wget				https://wordpress.org/latest.tar.gz
 
-RUN mkdir -p /usr/tmp_wp/
 
-RUN	tar -xzf  latest.tar.gz \
-	--strip-component 1 \
-	-C /usr/tmp_wp/
+RUN mkdir -p			/usr/tmp_wp/
+#RUN mkdir -p			/var/www/
+RUN	tar -xzf			latest.tar.gz \
+						--strip-component 1 \
+						-C /usr/tmp_wp/
 
-RUN	rm /latest.tar.gz
-RUN mkdir -p /var/www/
-ADD ./wp-config.php ./usr/tmp_wp
-ADD ./init_wp /usr/tmp_wp/
+RUN	rm					/latest.tar.gz
+RUN mkdir -p			/run/php/
+RUN	sed -i				's|listen = /run/php/php7.3-fpm.sock|listen = 9000|' \
+						/etc/php/7.3/fpm/pool.d/www.conf 
+ADD ./wp-config.php		/usr/tmp_wp/
+ADD ./init_wp			/usr/tmp_wp/
 
 
 EXPOSE 9000
@@ -46,4 +49,3 @@ EXPOSE 9000
 ENTRYPOINT ["/usr/bin/dumb-init"]
 
 CMD ["sh", "/usr/tmp_wp/init_wp"] 
-#CMD bash
