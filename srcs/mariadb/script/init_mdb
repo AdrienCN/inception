@@ -1,11 +1,14 @@
 #!/bin/bash
 
 service mysql start
+
 echo "CREATE DATABASE IF NOT EXISTS $WP_DB_NAME;" | mysql -u root                
 echo "CREATE USER IF NOT EXISTS '$WP_DB_USER'@'%' IDENTIFIED BY '$WP_DB_PASSWORD'" | mysql -u root
 echo "GRANT ALL ON $WP_DB_NAME.* TO '$WP_DB_USER'@'%'" | mysql -u root
 echo "FLUSH PRIVILEGES;" | mysql -u root
-service mysql stop
+
+#service mysql stop
+
 #mysql $WP_DB_NAME -u root < /usr/mdb_tmp/starting_site.sql
 
 #if [volume_exist = 0]
@@ -23,4 +26,4 @@ service mysql stop
 #echo "$WP_DB_NAME" 
 #echo "$WP_DB_PASSWORD"
 
-exec /usr/sbin/mysqld -u root
+exec /usr/sbin/mysqld

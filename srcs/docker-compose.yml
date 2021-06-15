@@ -22,6 +22,7 @@ services:
             - wp_vol:/var/www/:ro
         networks:
             - inception
+
     mariadb_s:
         build: ./mariadb
         image: mariadb_c
