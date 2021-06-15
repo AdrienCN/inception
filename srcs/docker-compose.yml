@@ -1,31 +1,35 @@
 version: "3.7"
 
 services:
-    nginx:
+     
+    wordpress_s:
+        build: ./wordpress/
+        image: wordpress_c
+        env_file: .env
+        volumes:
+            - wp_vol:/var/www/
+        networks:
+            - inception
+    nginx_s:
         build: ./nginx/
-        image: mon_nginx
+        image: nginx_c
+        depends_on:
+            - wordpress_s
         env_file: .env
         ports:
             - "443:443"
         volumes:
-            - wp_vol:/var/www/
+            - wp_vol:/var/www/:ro
         networks:
             - inception
-
-    wordpress:
-        build: ./wordpress/
-        image: mon_wp
+    mariadb_s:
+        build: ./mariadb
+        image: mariadb_c
         env_file: .env
         volumes:
-            - wp_vol:/var/www/
+            - mdb_vol:/var/lib/mysql/
         networks:
             - inception
-
-    mariadb:
-        build: ./mariadb
-        image: mon_mdb
-        volumes:
-            - mdb_vol:/var/lib/mysql/
 volumes:
     wp_vol:
         driver: local
@@ -44,5 +48,3 @@ volumes:
 networks:
     inception:
         driver: bridge
-
-

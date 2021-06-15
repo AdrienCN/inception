@@ -31,16 +31,19 @@ RUN wget				https://wordpress.org/latest.tar.gz
 
 
 RUN mkdir -p			/usr/tmp_wp/
-#RUN mkdir -p			/var/www/
+RUN mkdir -p			/var/www/wordpress/
+RUN mkdir -p			/run/php/
+
 RUN	tar -xzf			latest.tar.gz \
 						--strip-component 1 \
-						-C /usr/tmp_wp/
+						-C /var/www/wordpress/
 
 RUN	rm					/latest.tar.gz
-RUN mkdir -p			/run/php/
+
 RUN	sed -i				's|listen = /run/php/php7.3-fpm.sock|listen = 9000|' \
 						/etc/php/7.3/fpm/pool.d/www.conf 
-ADD ./wp-config.php		/usr/tmp_wp/
+
+ADD ./wp-config.php		/var/www/wordpress/
 ADD ./init_wp			/usr/tmp_wp/
 
 
