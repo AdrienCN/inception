@@ -19,7 +19,7 @@ services:
         ports:
             - "443:443"
         volumes:
-            - wp_vol:/var/www/:ro
+            - wp_vol:/var/www/
         networks:
             - inception
 
@@ -37,14 +37,16 @@ volumes:
         driver_opts:
             type: 'none'
             o: 'bind'
-            device: '/home/calao/data/wp_vol'
+            device: '/Users/adconsta/goinfre/inception/srcs/wp_vol'
+            #device: '/home/calao/data/wp_vol'
 
     mdb_vol:
         driver: local
         driver_opts:
             type: 'none'
             o: 'bind'
-            device: '/home/calao/data/mdb_vol'
+            device: '/Users/adconsta/goinfre/inception/srcs/mdb_vol'
+            #device: '/home/calao/data/mdb_vol'
 
 networks:
     inception:

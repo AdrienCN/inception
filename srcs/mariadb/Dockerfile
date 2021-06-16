@@ -19,12 +19,10 @@ ADD ./script/init_mdb	/usr/mdb_tmp/
 
 #RUN	sed -i '			s|datadir=/var/lib/mysql|datadir=/var/www/mariadb|' /etc/mysql/mariadb.conf.d/50-server.cnf
 
-RUN	sed -i				's/\#port/port/' /etc/mysql/mariadb.conf.d/50-server.cnf
+RUN	sed -i	's/\#port/port/' /etc/mysql/mariadb.conf.d/50-server.cnf
 
-#RUN sed -i				's/127.0.0.1/0.0.0.0/' /etc/mysql/mariadb.conf.d/50-server.cnf
+RUN sed -i	's/127.0.0.1/0.0.0.0/' /etc/mysql/mariadb.conf.d/50-server.cnf
 
-#RUN chmod +x ./mariadb/script
 ENTRYPOINT ["/usr/bin/dumb-init"]
 
 CMD [".//usr/mdb_tmp/init_mdb"]
-#CMD	tail -f /dev/null 
