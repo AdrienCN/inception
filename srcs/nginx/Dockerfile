@@ -5,8 +5,8 @@ RUN apt-get update && apt-get install -y \
 	dumb-init \
 	openssl
 
-COPY ./nginx.conf /etc/nginx/nginx.conf
-COPY ./default /etc/nginx/sites-available/default
+COPY ./conf/nginx.conf /etc/nginx/nginx.conf
+COPY ./conf/default /etc/nginx/sites-available/default
 
 RUN mkdir /etc/nginx/ssl
 

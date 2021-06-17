@@ -30,7 +30,6 @@ RUN apt-get install -y \
 RUN wget				https://wordpress.org/latest.tar.gz
 
 
-RUN mkdir -p			/usr/tmp_wp/
 RUN mkdir -p			/var/www/wordpress/
 RUN mkdir -p			/run/php/
 
@@ -43,12 +42,11 @@ RUN	rm					/latest.tar.gz
 RUN	sed -i				's|listen = /run/php/php7.3-fpm.sock|listen = 9000|' \
 						/etc/php/7.3/fpm/pool.d/www.conf 
 
-ADD ./wp-config.php		/var/www/wordpress/
-ADD ./init_wp			/usr/tmp_wp/
+ADD ./conf/wp-config.php		/var/www/wordpress/
 
 
 EXPOSE 9000
 
 ENTRYPOINT ["/usr/bin/dumb-init"]
 
-CMD ["sh", "/usr/tmp_wp/init_wp"] 
+CMD [".//usr/sbin/php-fpm7.3", "-F"]
