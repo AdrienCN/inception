@@ -25,4 +25,5 @@ RUN sed -i	's/127.0.0.1/0.0.0.0/' /etc/mysql/mariadb.conf.d/50-server.cnf
 
 ENTRYPOINT ["/usr/bin/dumb-init"]
 
-CMD [".//usr/mdb_tmp/init_mdb"]
+CMD [".//usr/bin/mysqld_safe"]
+#CMD [".//usr/mdb_tmp/init_mdb"]

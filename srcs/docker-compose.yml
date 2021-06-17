@@ -39,14 +39,16 @@ volumes:
         driver_opts:
             type: 'none'
             o: 'bind'
-            device: '/home/adconsta/data/wp_vol'
+            # device: '/home/adconsta/data/wp_vol'
+            device: '/home/calao/adrien_inception/srcs/wp_vol'
 
     mdb_vol:
         driver: local
         driver_opts:
             type: 'none'
             o: 'bind'
-            device: '/home/adconsta/data/mdb_vol'
+            device: '/home/calao/adrien_inception/srcs/mdb_vol'
+            # device: '/home/adconsta/data/mdb_vol'
 
 networks:
     inception:
