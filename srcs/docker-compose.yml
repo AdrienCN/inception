@@ -1,20 +1,22 @@
-version: "3.7"
+version: "3"
 
 services:
      
-    wordpress_s:
+    wordpress:
         build: ./wordpress/
-        image: wordpress_c
+        image: wordpress
+        depends_on:
+                - mariadb
         env_file: .env
         volumes:
             - wp_vol:/var/www/
         networks:
             - inception
-    nginx_s:
+    nginx:
         build: ./nginx/
-        image: nginx_c
+        image: nginx
         depends_on:
-            - wordpress_s
+            - wordpress
         env_file: .env
         ports:
             - "443:443"
@@ -23,9 +25,9 @@ services:
         networks:
             - inception
 
-    mariadb_s:
+    mariadb:
         build: ./mariadb
-        image: mariadb_c
+        image: mariadb
         env_file: .env
         volumes:
             - mdb_vol:/var/lib/mysql/

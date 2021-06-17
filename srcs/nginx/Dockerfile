@@ -21,7 +21,3 @@ EXPOSE 443
 ENTRYPOINT ["/usr/bin/dumb-init"]
 
 CMD ["nginx", "-g", "daemon off;"]
-
-#CMD service php7.3-fpm start && nginx -g "daemon off;"
-
-#CMD service nginx start && bash
