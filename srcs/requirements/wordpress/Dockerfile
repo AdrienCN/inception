@@ -31,6 +31,7 @@ RUN wget				https://wordpress.org/latest.tar.gz
 
 
 RUN mkdir -p			/var/www/wordpress/
+RUN chmod -R 777		/var/www/wordpress/
 RUN mkdir -p			/run/php/
 
 RUN	tar -xzf			latest.tar.gz \

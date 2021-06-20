@@ -1,28 +1,31 @@
-NAME	=	inception_adconsta
 
 CHEMIN	=	./srcs/docker-compose.yml
 
 all		:	up
 
 up		:
-			docker-compose -f $(CHEMIN) -p $(NAME) up -d --build 
+			docker-compose -f $(CHEMIN)  up -d --build 
 
 build	:
-			docker-compose -f $(CHEMIN) -p $(NAME) build
+			docker-compose -f $(CHEMIN)  build
 
 ps		:
-			docker-compose -f $(CHEMIN) -p $(NAME) ps
+			docker-compose -f $(CHEMIN)  ps
 
 stop	:
-			docker-compose -f $(CHEMIN) -p $(NAME) stop
+			docker-compose -f $(CHEMIN)  stop
 
 start	:
-			docker-compose -f $(CHEMIN) -p $(NAME) start
+			docker-compose -f $(CHEMIN)  start
 
 rm		:
-			docker-compose -f $(CHEMIN) -p $(NAME) rm --force
+			docker-compose -f $(CHEMIN)  rm --force
 
 down	:
-			docker-compose -f $(CHEMIN) -p $(NAME) down
+			docker-compose -f $(CHEMIN)  down
+
+clean	: 	down
+
+fclean	:	clean
 
 re 		: 	down up
