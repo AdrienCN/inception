@@ -1,4 +1,3 @@
-
 CHEMIN	=	./srcs/docker-compose.yml
 
 all		:	up
